@@ -1,0 +1,57 @@
+#..................................................................
+#Dictonary 
+#Kohen johnston
+#2024-03-17
+#..................................................................
+inventory = {"dagger": 2, "sword": 3, "shield": 1}
+prices = {"dagger": 40, "sword": 150, "shield": 75}
+
+def display_inventory():
+    print("Current Inventory:")
+    for item, amount in inventory.items():
+        print(f"{item}: {amount}")
+
+def add_to_inventory(item, amount):
+    if item in inventory:
+        inventory[item] += amount
+    else:
+        inventory[item] = amount
+
+def sell_item(item, amount):
+    if item in inventory:
+        if inventory[item] >= amount:
+            inventory[item] -= amount
+            total_price = prices[item] * amount
+            print(f"Sold {amount} {item}(s) for ${total_price}")
+        else:
+            print(f"Not enough {item} in stock.")
+    else:
+        print(f"{item} is not in the inventory.")
+
+# Main program
+print("Welcome to  Inventory Managemen!")
+
+while True:
+    print("\n1. Display Inventory")
+    print("2. Add to Inventory")
+    print("3. Sell Item")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        display_inventory()
+    elif choice == "2":
+        item = input("Enter the item name: ")
+        amount = int(input("Enter the amount to add: "))
+        add_to_inventory(item, amount)
+        print("Item added to inventory.")
+    elif choice == "3":
+        item = input("Enter the item name: ")
+        amount = int(input("Enter the amount to sell: "))
+        sell_item(item, amount)
+    elif choice == "4":
+        print("Exiting...")
+        break
+    else:
+        print("Invalid choice. Please try again.")
